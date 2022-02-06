@@ -25,10 +25,10 @@ void BunnyTimer::update() {
             if(_callback != NULL) {
                 _callback();
             }
-            if(_timeout_mode) {
-                _timeoutMillis = 0;
-            } else {
+            if(_repeat) {
                 _lastTimestamp = currentTimestamp;
+            } else {
+                _timeoutMillis = 0;
             }
         }
     } 
@@ -38,7 +38,7 @@ void BunnyTimer::update() {
 void BunnyTimer::setInterval(unsigned long timeoutMillis, f_void_t callback) {
     _timeoutMillis = timeoutMillis;
     _callback = callback;
-    _timeout_mode = false;
+    _repeat = true;
     _lastTimestamp = millis();
 }
 
@@ -46,7 +46,7 @@ void BunnyTimer::setInterval(unsigned long timeoutMillis, f_void_t callback) {
 void BunnyTimer::setTimeout(unsigned long timeoutMillis, f_void_t callback) {
     _timeoutMillis = timeoutMillis;
     _callback = callback;
-    _timeout_mode = true;
+    _repeat = false;
     _lastTimestamp = millis();
 }
 

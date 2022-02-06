@@ -5,12 +5,12 @@ Include the library and create a BunnyTimer instance.
 ```c++
 #include "BunnyTimer.hpp"
 
-BunnyTimer timer1;
+BunnyTimer timer;
 ```
 Call timer.update() in the loop function.
 ```c++
 void loop() {
-  timer1.update();
+  timer.update();
 }
 ```
 Make a function to call when the timer expires.
@@ -22,11 +22,15 @@ void function_to_call() {
 ```
 Call the function in 1000 milliseconds.
 ```c++
-timer1.setTimeout(1000, function_to_call);
+timer.setTimeout(1000, function_to_call);
 ```
 Call the function every 1000 milliseconds.
 ```c++
-timer1.setInterval(1000, function_to_call);
+timer.setInterval(1000, function_to_call);
+```
+Cancel timer.
+```c++
+timer.cancle();
 ```
 
 ### Example Code
