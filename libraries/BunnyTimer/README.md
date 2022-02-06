@@ -34,7 +34,7 @@ This example code prints on the serial port the number of milliseconds since the
 ```c++
 #include "BunnyTimer.hpp"
 
-BunnyTimer timer1;
+BunnyTimer reportTimer;
 
 void report() {
     Serial.print("Time: ");
@@ -43,11 +43,11 @@ void report() {
 
 void setup() {
   Serial.begin(9600);
-  timer1.setInterval(1000, report);
+  reportTimer.setInterval(1000, report);
 }
 
 void loop() {
-  timer1.update();
+  reportTimer.update();
 }
 ```
 
