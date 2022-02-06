@@ -1,3 +1,10 @@
+/**
+** \author Jian Kang
+** \copyright Apache-2.0 License
+** \brief BunnyTimer library 
+** \details BunnyTimer library 
+**/
+
 #ifndef _BUNNY_TIMER_H__
 #define _BUNNY_TIMER_H__
 

@@ -28,7 +28,7 @@ Call the function every 1000 milliseconds.
 ```c++
 timer.setInterval(1000, function_to_call);
 ```
-Cancel timer.
+Cancel the timer.
 ```c++
 timer.cancle();
 ```
