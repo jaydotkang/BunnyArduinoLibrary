@@ -3,24 +3,21 @@
 
 #include "Arduino.h"
 
-typedef void (*f_int_t) ();
-
+typedef void (*f_void_t) ();
+ 
 class BunnyTimer {
 private:
-    unsigned long _millis;
-    unsigned long _expire_time = -1;
+    unsigned long _timeoutMillis;
+    unsigned long _lastTimestamp;
     bool _timeout_mode = false;
-    bool _triggered = false;
-    f_int_t _callback = NULL;
+    f_void_t _callback = NULL;
     
 public:
     BunnyTimer();
     ~ BunnyTimer();
     void update();
-    void setInterval(unsigned long t_millis);
-    void setTimeout(unsigned long t_millis);
-    void setCallback(f_int_t);
-    bool triggered();
+    void setInterval(unsigned long t_millis, f_void_t);
+    void setTimeout(unsigned long t_millis, f_void_t);
     void cancel();
 };
 

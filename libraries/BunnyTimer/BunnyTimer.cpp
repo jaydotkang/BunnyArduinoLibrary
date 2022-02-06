@@ -1,47 +1,56 @@
 #include "BunnyTimer.hpp"
 
-BunnyTimer::BunnyTimer() { }
+#define MAX_MILLIS 4294967295 // The maximum value of millis()
+
+BunnyTimer::BunnyTimer() {
+    _timeoutMillis = 0;
+    _lastTimestamp = 0;
+    _callback = NULL;
+}
 
 BunnyTimer::~BunnyTimer() { }
 
+// Update the timer, call the "_callback" function if necessary
 void BunnyTimer::update() {
-    _triggered = false;
-    unsigned long currentMillis = millis();
-    if(_expire_time >= 0 && currentMillis > _expire_time) {
-        _triggered = true;
-        if(_callback != NULL) {
-            _callback();
+    if(_timeoutMillis > 0) {
+        unsigned long currentTimestamp = millis();
+        unsigned long pastMillis = currentTimestamp - _lastTimestamp;
+
+        // If millis() return to zero
+        if(currentTimestamp < _lastTimestamp) {
+            pastMillis = MAX_MILLIS - _lastTimestamp + currentTimestamp + 1;
         }
-        if(_timeout_mode) {
-            _expire_time = -1;
-        } else {
-            _expire_time = currentMillis + _millis;
+
+        if(pastMillis >= _timeoutMillis) {
+            if(_callback != NULL) {
+                _callback();
+            }
+            if(_timeout_mode) {
+                _timeoutMillis = 0;
+            } else {
+                _lastTimestamp = currentTimestamp;
+            }
         }
-    }
+    } 
 }
 
-void BunnyTimer::setInterval(unsigned long t_millis) {
-    _timeout_mode = false;
-    _millis = t_millis;
-    _expire_time = millis() + _millis;
-}
-
-void BunnyTimer::setCallback(f_int_t callback) {
+// Set timeout, the 'callback' function will be called with an interval of 'timeoutMillis'
+void BunnyTimer::setInterval(unsigned long timeoutMillis, f_void_t callback) {
+    _timeoutMillis = timeoutMillis;
     _callback = callback;
+    _timeout_mode = false;
+    _lastTimestamp = millis();
 }
 
-
-
-void BunnyTimer::setTimeout(unsigned long t_millis) {
+// Set timeout, the 'callback' function will be called after 'timeoutMillis'
+void BunnyTimer::setTimeout(unsigned long timeoutMillis, f_void_t callback) {
+    _timeoutMillis = timeoutMillis;
+    _callback = callback;
     _timeout_mode = true;
-    _millis = t_millis;
-    _expire_time = millis() + _millis;
+    _lastTimestamp = millis();
 }
 
-bool BunnyTimer::triggered() {
-    return _triggered;
-}
-
+// Cancel the timer
 void BunnyTimer::cancel() {
-    _expire_time = -1;
+    _timeoutMillis = 0;
 }
