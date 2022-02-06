@@ -1,8 +1,17 @@
+/**
+** \author Jian Kang
+** \copyright Apache-2.0 License
+** \brief Example: Blink led 
+** \details A simple example to blink led at 1000ms interval 
+**/
+
 #include "BunnyTimer.hpp"
 
 BunnyTimer timer;
 
+// For NodeMCU, the pin of the built-in led (blue) is 2
 int led_pin = 2;
+// Set the initial status of the led to OFF
 bool led_on = false;
 
 // Callback function
