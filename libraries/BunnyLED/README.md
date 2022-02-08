@@ -34,18 +34,25 @@ void loop() {
 ### Example Code
 This example code control the LED on pinout 2.
 ```c++
+
 #include "BunnyLED.hpp"
 
+// Create a BunnyLED instance
 BunnyLED blueLED;
+// An array represents the duration of the status of led (on and off alternatively)
 int blinkSeq1[] = {300, 300, 300, 300, 300, 1000};
+// The length of the sequance
 int blinkSeqLength1 = 6;
 
 void setup() {
+  // Attach pinout
   blueLED.attach(2);
+  // Blink
   blueLED.blink(blinkSeq1, blinkSeqLength1, true);
 }
 
 void loop() {
+  // Update led
   blueLED.update();
 }
 ```

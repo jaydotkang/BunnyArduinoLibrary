@@ -28,6 +28,10 @@ Call the function every 1000 milliseconds.
 ```c++
 timer.setInterval(1000, function_to_call);
 ```
+Test if the timer has been triggered.
+```c++
+bool triggered = timer.triggered();
+```
 Cancel the timer.
 ```c++
 timer.cancle();
@@ -55,5 +59,28 @@ void loop() {
 }
 ```
 
+This example code show another way to use the BunnyTimer library by using timer.triggered() instead of callback function.
+```c++
+#include "BunnyTimer.hpp"
+
+BunnyTimer reportTimer;
+
+void report() {
+    Serial.print("Time: ");
+    Serial.println(millis());
+}
+
+void setup() {
+  Serial.begin(9600);
+  reportTimer.setInterval(1000);
+}
+
+void loop() {
+  if(reportTimer.triggered()) {
+    report();
+  }
+  reportTimer.update();
+}
+```
 ### Notes and Warnings
 Please note that the "update()" method need to be run in "loop()" function. Otherwise the callback function will not be invoked.
