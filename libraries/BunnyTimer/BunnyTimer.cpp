@@ -21,6 +21,7 @@ BunnyTimer::~BunnyTimer() { }
 
 // Update the timer, invoke "_callback" function when the timer expires
 void BunnyTimer::update() {
+    _triggered = false;
     if(_timeoutMillis > 0) {
         unsigned long currentTimestamp = millis();
         unsigned long pastMillis = currentTimestamp - _lastTimestamp;
@@ -36,6 +37,7 @@ void BunnyTimer::update() {
             if(_callback != NULL) {
                 _callback();
             }
+            _triggered = true;
             // Repeat or stop
             if(_repeat) {
                 _lastTimestamp = currentTimestamp;
@@ -60,6 +62,10 @@ void BunnyTimer::setInterval(unsigned long timeoutMillis, f_void_t callback) {
     _callback = callback;
     _repeat = true;
     _lastTimestamp = millis();
+}
+
+bool BunnyTimer::triggered() {
+    return _triggered;
 }
 
 // Cancel the timer
