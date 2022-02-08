@@ -10,10 +10,11 @@
 
 #include "BunnyTimer.hpp"
 
-class BunnyLED {
+class BunnyLED
+{
 private:
     int _pin;
-    int* _seq;
+    int *_seq;
     int _seqIndex;
     int _seqLength;
     bool _repeat;
@@ -23,10 +24,10 @@ private:
 
 public:
     BunnyLED();
-    ~ BunnyLED();
+    ~BunnyLED();
     void attach(int);
     void update();
-    void blink(int*, int, bool);
+    void blink(int *, int, bool);
 };
 
 #endif

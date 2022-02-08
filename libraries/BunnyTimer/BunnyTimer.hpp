@@ -10,19 +10,20 @@
 
 #include "Arduino.h"
 
-typedef void (*f_void_t) ();
- 
-class BunnyTimer {
+typedef void (*f_void_t)();
+
+class BunnyTimer
+{
 private:
     unsigned long _timeoutMillis;
     unsigned long _lastTimestamp;
     bool _repeat = false;
     f_void_t _callback = NULL;
     bool _triggered = false;
-    
+
 public:
     BunnyTimer();
-    ~ BunnyTimer();
+    ~BunnyTimer();
     void update();
     void setInterval(unsigned long, f_void_t callback = NULL);
     void setTimeout(unsigned long, f_void_t callback = NULL);

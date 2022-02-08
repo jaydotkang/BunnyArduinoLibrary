@@ -21,7 +21,7 @@ int blinkSeqLength1 = 6;
 Call led.blink() to start blinking.
 ```c++
 void setup() {
-  blueLED.blink(blinkSeq1, blinkSeqLength1, true);
+  led.blink(blinkSeq1, blinkSeqLength1, true);
 }
 ```
 Call led.update() in the loop function.
