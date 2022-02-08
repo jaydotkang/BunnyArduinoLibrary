@@ -51,4 +51,4 @@ void loop() {
 ```
 
 ### Notes and Warnings
-Please note that the "update()" method need to be run in "loop()" function. Otherwise the callback function will not be invoked.
+Please note that the "update()" method need to be run in "loop()" function. 
