@@ -1,3 +1,10 @@
+/**
+** \author Jian Kang
+** \copyright Apache-2.0 License
+** \brief BunnyLED library 
+** \details BunnyLED library 
+**/
+
 #include "BunnyLED.hpp"
 
 // Construct
